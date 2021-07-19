@@ -1,9 +1,8 @@
-const bcrypt = require('bcrypts')
+const bcrypt =require("bcryptjs");
 
 const jwt = require('jsonwebtoken');
 const UserModel = require('../modules/User.model');
 
-constUserModel = require('.../models/User.model')
 
 
 class UserService{

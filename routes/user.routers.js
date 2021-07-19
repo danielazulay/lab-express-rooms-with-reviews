@@ -1,4 +1,5 @@
 const router = require("express").Router()
+const bcrypt =require("bcryptjs");
 const UserService = require("../services/user.service");
 
 const isAuthenticated = require("../middlewares/isAuthenticated");
@@ -42,4 +43,4 @@ router.get('/profile',isAuthenticated,async(req,res,next)=>{
     }
 })
 
-module.export = router
+module.exports = router
