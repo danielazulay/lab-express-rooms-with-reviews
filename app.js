@@ -4,7 +4,7 @@ const express = require("express");
 
 const connectToDb = require("./config/db.config");
 const userRouter = require("./routes/user.routers");
-
+const reviewRouter = require('./routes/review.routers')
 const app = express();
 
 app.use(express.json());
@@ -17,6 +17,7 @@ async function init() {
 
         //o que significa userrouter ???
         app.use("/", userRouter);
+        app.use("/", reviewRouter);
         //esse seria o next , por que tem que chamar atravez de callback
         app.use((err, req, res) => {
             if (err) {
@@ -26,12 +27,12 @@ async function init() {
         app.listen(4000, () => console.log("servidor rodando na porta 4000"));
     } catch (err) {
         console.log("erro ao conectar", err);
-        // nao entendi process exit ???
+        // temina conexao
         process.exit(1);
     }
 }
 
-//nao entendi init()??
+
 
 
 init()
