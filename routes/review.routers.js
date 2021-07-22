@@ -23,13 +23,13 @@ router.post("/newroom",async(req,res)=>{
 
 router.post("/newreview/:id",async(req,res)=>{
     try{
-  
- 
+    const formData = req.body
+    const id = req.params.id
+    console.log(req.body)
 
-   // const Room = await RoomModel.findOne({_id:id})
+    const newrev = await ReviewsModel.create({comment: formData.comment,roomId:id})
 
-    const newrev = await ReviewsModel.create({comment: req.body},{$push:{roomId:req.params.id}})
-
+    const roomreview = await RoomModel.findOneAndUpdate({_id:id},{$push:{reviews:newrev._id}} );
 
     return res.status(200).json(newrev)
 
@@ -75,10 +75,10 @@ return res.status(200).json({});
 router.get("/all",async(req,res,next)=>{
 try{
     
-    const all = await RoomModel.find().populate('reviews')
+    const all = await RoomModel.find().populate('review')
 
     return res.status(200).json(all)
-}catch(err){
+}catch(err){Module.require
 console.log(err)
 }
 })
